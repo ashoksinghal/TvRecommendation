@@ -20,10 +20,7 @@ class MainActivity : AppCompatActivity() {
         val type = object : TypeToken<ArrayList<Channel>>() {}.type
 
 
-        
-
-        GlobalScope.async(Dispatchers.IO) {
-
+        GlobalScope.launch(Dispatchers.IO) {
             val string = URL("http://10.178.23.94:1337/channels/recommend/1").readText()
             val result = Gson().fromJson<List<Channel>>(
                 string,
@@ -33,5 +30,6 @@ class MainActivity : AppCompatActivity() {
                 recyclerview.adapter = ChannelAdapter(result)
             }
         }
+
     }
 }
